@@ -26,7 +26,10 @@
 
     <div class="h-2/4 mt-40 w-full max-w-screen-sm bg-teal-500">&nbsp;</div>
 
-    <form class="w-full max-w-screen-sm fixed bottom-0 p-6 bg-white">
+    <form 
+      @submit.prevent="sendMessage"
+      class="w-full max-w-screen-sm fixed bottom-0 p-6 bg-white"
+    >
       <div class="flex items-center border-b border-b-2 border-teal-500 py-2">
         <input
           class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -61,7 +64,6 @@ export default {
         console.log('Socket connected.');
       },
       received(data) {
-        console.log(data)
         if (data.type === 'history') {
           this.history = data.message
         } else if (data.type === 'create') {
