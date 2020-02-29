@@ -2,35 +2,56 @@
   <div id="container">
     <h1>Chat Room</h1>
     <div id="chat-logs"></div>
-    <input type="text" placeholder="type something..." />
-    <button>Send</button>
+    <input type="text" placeholder="type something..." v-model="message" />
+    <button @click="sendMessage">Send</button>
+    <button @click="loadHistory">Load</button>
+    <div>{{ history }}</div>
   </div>
 </template>
 
 <script>
-import Cable from 'actioncable'
-
-let cable = Cable.createConsumer('http://api-rails-chat.herokuapp.com/cable');
-let createSocket = cable.subscriptions.create({
-      channel: 'ChatChannel'
-    }, {
-      initialize: function() {},
-      connected: function() {},
-      received: (data) => {
-        console.log(data)
-      },
-      create: function(chatContent) {
-        this.perform('create', {
-          message: chatContent
-        });
-      },
-      history: function() {
-        return this.perform('history')
-      }
-    });
-  
 export default {
-  created() {
+  data() {
+    return {
+      message: '',
+      history: []
+    }
+  },
+  channels: {
+    ChatChannel: {
+      connected() {
+        console.log('Socket connected.');
+      },
+      received(data) {
+        if (data.type === 'history') {
+          this.history = data.message
+        } else if (data.type === 'create') {
+          this.history.push(data.message.message)
+        }
+      },
+    }
+  },
+  mounted() {
+    this.$cable.subscribe({
+      channel: 'ChatChannel',
+    })
+  },
+  methods: {
+    sendMessage() {
+      this.$cable.perform({
+        channel: 'ChatChannel',
+        action: 'create',
+        data: {
+          message: this.message
+        }
+      })
+    },
+    loadHistory() {
+      this.$cable.perform({
+        channel: 'ChatChannel',
+        action: 'history'
+      })
+    }
   },
 }
 </script>
