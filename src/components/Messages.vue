@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full max-w-screen-sm">
+  <div class="w-full max-w-screen-sm" v-if="history.length">
     <div
       class="w-4/5 bg-gray-100 rounded-md shadow-md mt-6 p-4 ml-auto mr-auto block"
       v-for="(message, index) in history" :key="index"
