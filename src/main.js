@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import ActionCableVue from 'actioncable-vue';
+import '@/assets/css/tailwind.css'
 // import App from './App.vue'
 import Chat from './Chat.vue'
 
