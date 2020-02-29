@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'Messages',
+  name: 'MessagesComponent',
   props: {
     history: Array
   }
