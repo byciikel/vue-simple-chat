@@ -1,14 +1,7 @@
 <template>
   <div class="flex justify-center flex-wrap content-center">
     <Header @load-history="loadHistory" />
-    <div
-      class="w-3/5 bg-gray-100 rounded-md shadow-md mt-6 p-4"
-      v-for="(message, index) in history" :key="index"
-    >
-      {{ message }}
-    </div>
-
-    <div class="h-2/4 mt-40 w-full max-w-screen-sm bg-teal-500">&nbsp;</div>
+    <Messages :history="history" />
 
     <form 
       @submit.prevent="sendMessage"
@@ -36,10 +29,13 @@
 
 <script>
 import Header from './components/Header.vue'
+import Messages from './components/Messages.vue'
+
 export default {
   name: 'Chat',
   components: {
-    Header
+    Header,
+    Messages
   },
   data() {
     return {
