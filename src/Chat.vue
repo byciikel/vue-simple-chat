@@ -79,6 +79,7 @@ export default {
   },
   methods: {
     sendMessage() {
+      if (this.message)
       this.$cable.perform({
         channel: 'ChatChannel',
         action: 'create',
