@@ -8,7 +8,7 @@ Vue.config.productionTip = false
 Vue.use(ActionCableVue, {
   debug: true,
   debugLevel: 'error',
-  connectionUrl: 'ws://api-rails-chat.herokuapp.com/cable',
+  connectionUrl: 'wss://api-rails-chat.herokuapp.com/cable',
   connectImmediately: true,
 });
 
