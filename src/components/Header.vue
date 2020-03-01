@@ -1,6 +1,6 @@
 <template>
   <div class="w-full max-w-screen-sm bg-teal-500">
-    <div class="pt-6 justify-center content-center">
+    <div class="pt-6">
       <h1 class="text-2xl text-center text-white">Simple Message App</h1>
     </div>
     <div class="text-center pt-2 pb-6">

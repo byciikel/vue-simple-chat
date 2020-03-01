@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center flex-wrap content-center">
+  <div class="flex justify-center content-center flex-col w-screen items-center">
     <Header @load-history="loadHistory" />
     <Messages :history="history" />
     <Form @send-message="sendMessage($event)" />
