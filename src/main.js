@@ -4,11 +4,13 @@ import '@/assets/css/tailwind.css'
 // import App from './App.vue'
 import Chat from './Chat.vue'
 
+let protocol = window.location.protocol === 'https:' ? 'wss' : 'ws'
+
 Vue.config.productionTip = false
 Vue.use(ActionCableVue, {
   debug: true,
   debugLevel: 'error',
-  connectionUrl: 'wss://api-rails-chat.herokuapp.com/cable',
+  connectionUrl: `${protocol}://api-rails-chat.herokuapp.com/cable`,
   connectImmediately: true,
 });
 
