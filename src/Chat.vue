@@ -42,6 +42,9 @@ export default {
       channel: 'ChatChannel',
     })
   },
+  created() {
+    document.title = 'Simple Message App'
+  },
   methods: {
     sendMessage(content) {
       if (content)
